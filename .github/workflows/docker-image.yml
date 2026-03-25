@@ -27,14 +27,6 @@ jobs:
           key: ${{ secrets.EC2_KEY }}
           script: |
 
-            # Install Docker if not exists
-            if ! command -v docker &> /dev/null
-            then
-              sudo apt update
-              sudo apt install docker.io -y
-              sudo systemctl start docker
-            fi
-
             # Clone repo if not exists
             if [ ! -d "gitaction-task" ]; then
               git clone https://github.com/mythili2392/gitaction-task.git
