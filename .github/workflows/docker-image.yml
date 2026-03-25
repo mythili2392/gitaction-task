@@ -16,7 +16,7 @@ jobs:
 
       # 2️⃣ Build Docker image (CI part)
       - name: Build Docker Image
-        run: docker build -t my-app .
+        run: docker build -t gitaction-task .
 
       # 3️⃣ Deploy to EC2 via SSH (CD part)
       - name: Deploy to EC2
@@ -38,14 +38,14 @@ jobs:
             git pull origin main
 
             # Stop existing container
-            docker stop my-app || true
-            docker rm my-app || true
+            docker stop gitaction-task || true
+            docker rm gitaction-task || true
 
             # Remove old image
-            docker rmi my-app || true
+            docker rmi gitaction-task || true
 
             # Build new image
-            docker build -t my-app .
+            docker build -t gitaction-task .
 
             # Run container
-            docker run -d -p 80:80 --name my-app my-app
+            docker run -d -p 80:80 --name gitaction-task gitaction-task
