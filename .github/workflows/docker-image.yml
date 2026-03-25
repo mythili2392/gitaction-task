@@ -41,6 +41,12 @@ jobs:
             docker stop gitaction-task || true
             docker rm gitaction-task || true
 
+            # Stop all running containers
+            docker stop $(docker ps -q) || true
+
+            # Remove all containers
+            docker rm $(docker ps -aq) || true
+
             # Remove old image
             docker rmi gitaction-task || true
 
